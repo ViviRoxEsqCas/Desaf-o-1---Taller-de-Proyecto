@@ -20,7 +20,7 @@
         </div>
         <h3 id="documentTitle"></h3>
         <p class="document-description">Documento del proyecto disponible para consulta.</p>
-        <div class="document-meta"><span>PDF</span><span class="document-page-label">Documento</span></div>
+        <div class="document-meta"><span>ARCHIVO</span><span class="document-page-label">Documento</span></div>
         <div class="document-rule"></div>
         <p class="document-note">Consulta el contenido en el visor. La página está configurada en modo solo lectura.</p>
       </aside>
@@ -72,6 +72,7 @@
     const source = item.dataset.media || item.dataset.pdf;
     const productSource = item.dataset.product;
     const mediaType = item.dataset.mediaType || (item.dataset.pdf ? 'application/pdf' : '');
+    const isVideo = mediaType.startsWith('video/') || /\.(mp4|webm|mov)(?:$|[?#])/i.test(source || '');
     const activeSource = productSource || source;
     openTab.href = activeSource || '#';
     openTab.hidden = !activeSource;
@@ -84,16 +85,19 @@
         : 'PDF';
     if (productSource) {
       modal.querySelector('.document-dialog').classList.add('is-product');
+      modal.querySelector('.document-dialog').classList.remove('is-video');
       viewer.innerHTML = `<iframe class="document-product-app" src="${productSource}" title="${title.textContent}"></iframe>`;
     } else if (source) {
       modal.querySelector('.document-dialog').classList.remove('is-product');
+      modal.querySelector('.document-dialog').classList.toggle('is-video', isVideo);
       renderMedia(item, source, mediaType);
     } else {
       modal.querySelector('.document-dialog').classList.remove('is-product');
-      viewer.innerHTML = `<div class="pdf-empty">
-          <div class="pdf-symbol" aria-hidden="true">PDF</div>
-          <strong>Documento PDF</strong>
-          <span>El archivo PDF se mostrará aquí cuando esté vinculado al proyecto.</span>
+      modal.querySelector('.document-dialog').classList.toggle('is-video', isVideo);
+      viewer.innerHTML = `<div class="pdf-empty ${isVideo ? 'video-empty' : ''}">
+          <div class="pdf-symbol" aria-hidden="true">${isVideo ? '▶' : 'PDF'}</div>
+          <strong>${isVideo ? 'Video de presentación' : 'Documento PDF'}</strong>
+          <span>El archivo ${isVideo ? 'de video se mostrará' : 'PDF se mostrará'} aquí cuando esté vinculado al proyecto.</span>
         </div>`;
     }
     modal.classList.add('is-open');

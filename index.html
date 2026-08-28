@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" href="./assets/img/miniatura.png">
 </head>
 <body>
   
@@ -98,7 +99,7 @@
               <!-- Puedes cambiar esta imagen por un cover o arte conceptual -->
               <img src="./assets/img/arte.jpeg" alt="Arte">
             </div>
-            <div class="stickers" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="stickers" aria-hidden="true"><span>˚˖𓍢ִ໋`🌿:✧˚.⋆𖧧</span></div>
           </div>
         </div>
 
@@ -107,57 +108,96 @@
           <div class="stories-heading">
             <div>
               <span class="stories-kicker">Archivo visual</span>
-              <h3>Historias del proyecto</h3>
             </div>
-            <span class="stories-count">07 piezas</span>
+            <span class="stories-count">08 piezas</span>
           </div>
           <!-- Cada círculo abre el mismo visor modal del proyecto. -->
-          <div class="grid-9">
-            <div class="db-item" data-pdf="./assets/pdf/LEYENDA.pdf" data-description="Leyenda del Illimani y desarrollo de la historia.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 10h22l8 8v36H18z"/><path d="M40 10v10h10M25 32h16M25 41h16M25 50h10"/></svg>
-              </div>
-              <div class="db-label">Leyenda</div>
-            </div>
-            <div class="db-item" data-pdf="./assets/pdf/GUION.pdf" data-description="Texto y estructura narrativa del proyecto.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 12h32v40H16zM24 22h16M24 32h16M24 42h10"/></svg>
-              </div>
-              <div class="db-label">Guion</div>
-            </div>
-            <div class="db-item" data-media="./assets/pdf/STORYBOARD.pdf" data-description="Secuencia visual de escenas y desarrollo narrativo.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="14" width="40" height="36" rx="3"/><path d="M12 25h40M25 14v11M39 14v11M25 25v25M39 25v25"/></svg>
-              </div>
-              <div class="db-label">Storyboard</div>
-            </div>
-            <div class="db-item" data-pdf="" data-media="" data-description="Estructura narrativa del protagonista.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="17" r="7"/><path d="M20 51c1-11 7-17 12-17s11 6 12 17M32 24v10"/></svg>
-              </div>
-              <div class="db-label">Camino del Héroe</div>
-            </div>
-            <div class="db-item" data-pdf="" data-media="" data-description="Capturas y evidencias del uso de inteligencia artificial.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="32" rx="5"/><circle cx="32" cy="32" r="8"/><path d="M20 16l3-6h9l3 6M46 23h.01"/></svg>
-              </div>
-              <div class="db-label">Mockup</div>
-            </div>
-            <div class="db-item" data-product="./AMAR_CON_RESPETO/frontend/index.html" data-description="Aplicación web interactiva del proyecto Amar con Respeto.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="44" height="34" rx="3"/><path d="M10 23h44M20 54h24M27 48v6M37 48v6M20 32h.01M28 32h.01M36 32h.01M44 32h.01M20 40h.01M28 40h.01"/></svg>
-              </div>
-              <div class="db-label">Producto Software</div>
-            </div>
-            <div class="db-item" data-pdf="" data-media="" data-description="Diapositivas de presentación del proyecto.">
-              <div class="db-cover">
-                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="12" width="40" height="30" rx="3"/><path d="M32 42v10M23 52h18M27 23l13 6-13 6z"/></svg>
-              </div>
-              <div class="db-label">Video</div>
-            </div>
-          </div>
-        </div>
+        <div class="grid-9">
 
+          <div class="db-item"
+              data-pdf="./assets/pdf/LEYENDA.pdf"
+              data-description="Relato de la Leyenda del Illimani, con sus personajes, acontecimientos, conflicto y desenlace. Constituye la base narrativa y cultural sobre la que se desarrolla la reinterpretación del proyecto.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 10h22l8 8v36H18z"/><path d="M40 10v10h10M25 32h16M25 41h16M25 50h10"/></svg>
+            </div>
+            <div class="db-label">Leyenda</div>
+          </div>
+
+
+          <div class="db-item"
+              data-pdf="./assets/pdf/GUION.pdf"
+              data-description="Guion técnico y narrativo del video del proyecto. Organiza la representación de la Leyenda del Illimani, el desarrollo del conflicto, la transformación de los personajes y la transición hacia la reinterpretación contemporánea mediante una solución de software.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 12h32v40H16zM24 22h16M24 32h16M24 42h10"/></svg>
+            </div>
+            <div class="db-label">Guion</div>
+          </div>
+
+
+          <div class="db-item"
+              data-pdf="./assets/pdf/STORYBOARD.pdf"
+              data-description="Planificación visual del video mediante una secuencia de escenas. Define la composición, acciones, personajes y recursos audiovisuales necesarios para representar la leyenda y desarrollar su reinterpretación contemporánea.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="14" width="40" height="36" rx="3"/><path d="M12 25h40M25 14v11M39 14v11M25 25v25M39 25v25"/></svg>
+            </div>
+            <div class="db-label">Storyboard</div>
+          </div>
+
+
+          <div class="db-item"
+              data-pdf="./assets/pdf/CAMINODELHEROE.pdf"
+              data-description="Análisis del Camino del Héroe aplicado a la trayectoria de Illi en la Leyenda del Illimani. Desarrolla las diez etapas narrativas, el conflicto, las decisiones, las pruebas, el desenlace y la transformación del protagonista, estableciendo además el vínculo con la reinterpretación contemporánea del proyecto.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="17" r="7"/><path d="M20 51c1-11 7-17 12-17s11 6 12 17M32 24v10"/></svg>
+            </div>
+            <div class="db-label">Camino del Héroe</div>
+          </div>
+
+
+          <div class="db-item"
+              data-pdf=""
+              data-media=""
+              data-description="Mockup de la solución digital Amar con Respeto. Presenta la propuesta visual y funcional de la aplicación, sus principales pantallas y la interacción prevista para orientar al usuario en la reflexión sobre relaciones, autonomía, límites, comunicación y desarrollo personal.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="32" rx="5"/><circle cx="32" cy="32" r="8"/><path d="M20 16l3-6h9l3 6M46 23h.01"/></svg>
+            </div>
+            <div class="db-label">Mockup</div>
+          </div>
+
+
+          <div class="db-item"
+              data-product="./AMAR_CON_RESPETO/frontend/index.html"
+              data-description="Producto software desarrollado como reinterpretación contemporánea de la Leyenda del Illimani. Amar con Respeto es una aplicación web interactiva que plantea situaciones de reflexión relacionadas con relaciones saludables, autonomía, límites, comunicación, decisiones personales y desarrollo individual.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="44" height="34" rx="3"/><path d="M10 23h44M20 54h24M27 48v6M37 48v6M20 32h.01M28 32h.01M36 32h.01M44 32h.01M20 40h.01M28 40h.01"/></svg>
+            </div>
+            <div class="db-label">Producto Software</div>
+          </div>
+
+
+          <div class="db-item"
+              data-pdf=""
+              data-media=""
+              data-media-type="video/mp4"
+              data-description="Video final de presentación del proyecto. Integra la representación audiovisual de la Leyenda del Illimani con su reinterpretación contemporánea y presenta la propuesta de Desarrollo de Software Amar con Respeto.">
+            <div class="db-cover">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="12" width="40" height="30" rx="3"/><path d="M32 42v10M23 52h18M27 23l13 6-13 6z"/></svg>
+            </div>
+            <div class="db-label">Video</div>
+          </div>
+
+          <div class="db-item"
+            data-pdf="./assets/pdf/EVIDENCIA_IA.pdf"
+            data-description="Documentación del proceso de uso de herramientas de inteligencia artificial durante el desarrollo del proyecto. Presenta los prompts utilizados, resultados iniciales, problemas o errores identificados, correcciones realizadas y resultados finales obtenidos.">
+          <div class="db-cover">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z"/>
+              <path d="M46 34l2 4 4 2-4 2-2 4-2-4-4-2 4-2z"/>
+              <path d="M18 38l2 4 4 2-4 2-2 4-2-4-4-2 4-2z"/>
+            </svg>
+          </div>
+          <div class="db-label">Evidencia IA</div>
+        </div>
       </div>
     </div>
   </div>
