@@ -1,0 +1,16 @@
+{
+  "name": "amar-con-respeto-backend",
+  "version": "1.0.0",
+  "description": "Backend mínimo para proteger la API key y conectar con la IA real (modo REAL) del proyecto Amar con Respeto.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  }
+}

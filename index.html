@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivo — Plataforma de Narración</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  
+  <div class="app-container">
+    <!-- Contenedor principal estilo Ventana macOS -->
+    <div class="window-container">
+      
+      <!-- Pestaña superior y controles -->
+      <div class="window-header">
+        <div class="tab" id="brandName">DESAFIO 1  - DEL RELATO A UNA EXPERIENCIA AUDIOVISUAL Y DIGITAL</div>
+        <div class="controls">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+
+      <!-- Cuerpo de la tarjeta -->
+      <div class="window-content">
+
+        <div class="profile-banner">
+          <img src="./assets/img/banner.png" alt="Paisaje montañoso que inspira el proyecto">
+          <div class="banner-shade"></div>
+          <div class="banner-copy">
+            <span>Archivo audiovisual</span>
+            <strong>La Leyenda del Illimani</strong>
+          </div>
+        </div>
+        
+        <!-- SECCIÓN SUPERIOR: Perfil e Información -->
+        <div class="profile-section">
+          <!-- Columna Izquierda -->
+          <div class="profile-col-left">
+            <div class="avatar-container">
+              <img src="./assets/img/logo.jpeg" alt="Avatar" class="avatar" id="mainAvatar">
+            </div>
+            <h2 class="name-title">La Leyenda del Illimani</h2>
+            <div class="info-block">
+              <strong>Categoría:</strong> <span>Leyenda boliviana · Narrativa audiovisual</span><br>
+              <strong>Autor:</strong> <span>Nara, Nemtala Labibe</span>
+              <strong>Universitaria:</strong> <span>Vivian Roxana Esquivel Castillo</span>
+            </div>
+            <div class="table-block mt-1">
+              <div class="table-header">Advertencias / Notas</div>
+              <div class="table-body">Adaptación narrativa de una leyenda tradicional boliviana. El proyecto busca conservar la identidad cultural y los elementos esenciales de la historia, realizando una interpretación audiovisual propia.</div>
+            </div>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="profile-col-center">
+            <div class="table-block">
+              <div class="table-header">Sobre el proyecto</div>
+              <div class="table-body">
+                Fecha entrega: <strong>27/08</strong><br>
+                <strong>Contexto: </strong>Cultura y tradición boliviana<br>
+              </div>
+            </div>
+            <div class="info-block mt-1">
+              <strong>Objetivo:</strong> Adaptar la Leyenda del Illimani a una propuesta narrativa audiovisual que permita representar sus personajes, acontecimientos y elementos culturales mediante una experiencia visual e interactiva.<br>
+              <div class="topics-block">
+                <strong>Temas</strong>
+                <div class="topic-list" aria-label="Temas del proyecto">
+                  <span class="topic topic-coral">Amor</span>
+                  <span class="topic topic-sage">Tradición</span>
+                  <span class="topic topic-blue">Cultura boliviana</span>
+                  <span class="topic topic-yellow">Identidad</span>
+                  <span class="topic topic-lilac">Destino</span>
+                  <span class="topic topic-rose">Sacrificio</span>
+                  <span class="topic topic-mint">Naturaleza</span>
+                  <span class="topic topic-sand">Leyenda</span>
+                  <span class="topic topic-plum">Conflicto</span>
+                  <span class="topic topic-sky">Esperanza</span>
+                </div>
+              </div>
+            </div>
+            <div class="table-block mt-1">
+              <div class="table-header">Resumen</div>
+              <div class="table-body">La Leyenda del Illimani narra una historia de amor marcada por las circunstancias, los sentimientos y la fuerza del destino, vinculada al imponente paisaje de La Paz y a la presencia simbólica del Illimani. A través de sus personajes y acontecimientos, la historia conecta el romance con elementos de la tradición oral y la identidad cultural boliviana.</div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="profile-col-right">
+            <div class="info-block">
+              <strong>Restricciones:</strong> La adaptación no pretende reemplazar ni establecer una única versión de la leyenda tradicional. Se evitan modificaciones que alteren innecesariamente su contexto cultural o conviertan la historia en una representación ajena a sus raíces bolivianas. La propuesta visual funciona como interpretación artística y no como reconstrucción histórica exacta.
+            </div>
+            <div class="polaroid">
+              <!-- Puedes cambiar esta imagen por un cover o arte conceptual -->
+              <img src="./assets/img/arte.jpeg" alt="Arte">
+            </div>
+            <div class="stickers" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+        <!-- BARRA INTERMEDIA NEGRA: Navegación/Acciones -->
+        <div class="action-bar">
+          <button class="pill-btn" type="button">archivos</button>
+          <button class="pill-btn" type="button">instagram</button>
+          <button class="pill-btn" type="button">twitter</button>
+          <button class="icon-btn" type="button" aria-label="Perfil"></button>
+        </div>
+
+        <!-- SECCIÓN INFERIOR: Las 9 Bases de Datos (Estilo Notion) -->
+        <div class="database-section">
+          <!-- Cuadrícula de 9 documentos -->
+          <div class="grid-9">
+            <!-- Vincula cada archivo en data-pdf="./assets/pdf/nombre.pdf" o data-media="./assets/video/nombre.mp4". -->
+            
+            <!-- Documento 1 -->
+            <div class="db-item" data-pdf="./assets/pdf/LEYENDA.pdf" data-description="Leyenda del Illimani y desarrollo de la historia.">
+              <div class="db-cover">
+                <img src="./assets/img/banner.png" alt="Doc 1">
+              </div>
+              <div class="db-label">Leyenda</div>
+            </div>
+            
+            <!-- Documento 2 -->
+            <div class="db-item" data-pdf="./assets/pdf/GUION.pdf" data-description="Texto y estructura narrativa del proyecto.">
+              <div class="db-cover">
+                <img src="./assets/img/guion.jpeg" alt="Doc 2">
+              </div>
+              <div class="db-label">Guion</div>
+            </div>
+            
+            <!-- Documento 3 -->
+            <div class="db-item" data-media="./assets/pdf/STORYBOARD.pdf" data-description="Secuencia visual de escenas y desarrollo narrativo.">
+              <div class="db-cover">
+                <img src="https://placehold.co/300x300/ffcad4/555555?text=Img+3" alt="Doc 3">
+              </div>
+              <div class="db-label">Storyboard</div>
+            </div>
+            
+            <!-- Documento 4 -->
+            <div class="db-item" data-pdf="" data-media="" data-description="Estructura narrativa del protagonista.">
+              <div class="db-cover">
+                <img src="https://placehold.co/300x300/f4acb7/555555?text=Img+4" alt="Doc 4">
+              </div>
+              <div class="db-label">Camino del Héroe</div>
+            </div>
+            
+            <!-- Documento 5 -->
+            <div class="db-item" data-pdf="" data-media="" data-description="Capturas y evidencias del uso de inteligencia artificial.">
+              <div class="db-cover">
+                <img src="https://placehold.co/300x300/9d8189/ffffff?text=Img+5" alt="Doc 5">
+              </div>
+              <div class="db-label">Mockup</div>
+            </div>
+            
+            <!-- Documento 6 -->
+            <div class="db-item" data-product="./AMAR_CON_RESPETO/frontend/index.html" data-description="Aplicación web interactiva del proyecto Amar con Respeto.">
+              <div class="db-cover">
+                <img src="https://placehold.co/300x300/a3b18a/555555?text=Img+6" alt="Doc 6">
+              </div>
+              <div class="db-label">Producto Software</div>
+            </div>
+            
+            <!-- Documento 7 -->
+            <div class="db-item" data-pdf="" data-media="" data-description="Diapositivas de presentación del proyecto.">
+              <div class="db-cover">
+                <img src="https://placehold.co/300x300/588157/ffffff?text=Img+7" alt="Doc 7">
+              </div>
+              <div class="db-label">Video</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
