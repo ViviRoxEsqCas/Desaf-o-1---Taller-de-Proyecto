@@ -63,9 +63,8 @@
   }
 
   function openModal(item) {
-    const itemImage = item.querySelector('.db-cover img');
     const itemTitle = item.querySelector('.db-label');
-    if (!itemImage || !itemTitle) return;
+    if (!itemTitle) return;
 
     title.textContent = itemTitle.textContent.trim();
     description.textContent = item.dataset.description || 'Documento del proyecto disponible para consulta.';
@@ -95,7 +94,6 @@
           <div class="pdf-symbol" aria-hidden="true">PDF</div>
           <strong>Documento PDF</strong>
           <span>El archivo PDF se mostrará aquí cuando esté vinculado al proyecto.</span>
-          <img src="${itemImage.currentSrc || itemImage.src}" alt="Vista previa de ${title.textContent}">
         </div>`;
     }
     modal.classList.add('is-open');
