@@ -91,8 +91,6 @@ export async function renderScreen3(container, { session, onVolver, onNuevaRefle
         <button class="btn-secondary" id="btn-volver">VOLVER A MIS RESPUESTAS</button>
         <button class="btn-primary" id="btn-nueva">NUEVA REFLEXIÓN</button>
       </div>
-
-      <p class="modo-debug">Modo de generación: ${resultado._modo || "mock"}</p>
     </section>
   `;
 

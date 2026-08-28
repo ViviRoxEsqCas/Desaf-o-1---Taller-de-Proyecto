@@ -11,9 +11,10 @@ export function renderScreen2(container, { respuestasIniciales = {}, onComplete 
     const total = QUESTIONS.length;
     const progreso = Math.round(((index + 1) / total) * 100);
     const valorActual = respuestas[q.id];
+    const colorEtapa = colorDeEtapa(index, total);
 
     container.innerHTML = `
-      <section class="screen screen-2">
+      <section class="screen screen-2" style="--step-color:${colorEtapa.color}; --step-soft:${colorEtapa.soft};">
         <div class="progress-info">Pregunta ${index + 1} de ${total}</div>
         <div class="progress-bar"><div class="progress-fill" style="width:${progreso}%"></div></div>
 
@@ -114,6 +115,18 @@ export function renderScreen2(container, { respuestasIniciales = {}, onComplete 
   }
 
   render();
+}
+
+function colorDeEtapa(index, total) {
+  const paleta = [
+    { color: "#a9aaa4", soft: "#ecebe7" },
+    { color: "#afb0b8", soft: "#ececef" },
+    { color: "#b7b7a3", soft: "#efeee2" },
+    { color: "#a9b7ad", soft: "#e8eee9" },
+    { color: "#a5b4bc", soft: "#e7edef" },
+  ];
+  const etapa = Math.min(paleta.length - 1, Math.floor((index / Math.max(1, total - 1)) * paleta.length));
+  return paleta[etapa];
 }
 
 function accompanimentText(q) {

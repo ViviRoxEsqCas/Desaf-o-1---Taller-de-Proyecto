@@ -4,7 +4,7 @@
 // - Modo "mock": genera la reflexión localmente (mockGenerator.js). No requiere
 //   backend ni conexión a internet.
 // - Modo "real": envía el contexto a un endpoint propio del backend
-//   (CONFIG.API_ENDPOINT), que a su vez llama a la API de Anthropic usando una
+//   (CONFIG.API_ENDPOINT), que a su vez llama a la API de Gemini usando una
 //   API key que vive únicamente en el servidor. El frontend NUNCA ve la API key.
 //
 // Si el modo "real" falla (backend caído, sin conexión, etc.), se hace un

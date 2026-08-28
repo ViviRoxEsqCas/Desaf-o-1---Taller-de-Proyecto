@@ -5,7 +5,7 @@
 //   "mock" -> la reflexión se genera 100% en el cliente (sin backend, sin API key).
 //             Ideal para la demostración académica.
 //   "real" -> el cliente llama a un backend propio (backend/server.js) que a su vez
-//             llama a la API de Anthropic usando una API key protegida en el servidor.
+//             llama a la API de Gemini usando una API key protegida en el servidor.
 //             La API key NUNCA debe colocarse aquí ni en ningún archivo del frontend.
 //
 // Para cambiar de modo, edite AI_MODE. También puede sobreescribirlo en tiempo de

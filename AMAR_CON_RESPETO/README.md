@@ -98,13 +98,14 @@ El prompt interno enviado a la IA (ver `backend/server.js`, constante `SYSTEM_PR
 `AIService` (`frontend/js/services/aiService.js`) soporta dos modos:
 
 - **mock** (por defecto): genera la reflexión 100% en el navegador (`mockGenerator.js`), sin backend ni API key. Permite hacer la demostración académica completa sin depender de conexión externa.
-- **real**: llama al backend (`/api/reflect`), que a su vez llama a la API de Anthropic.
+- modo `real` depende de tener una API key válida de Gemini configurada en el backend; sin ella, el sistema usa automáticamente el modo mock para no interrumpir la demostración.
+- **real**: llama al backend (`/api/reflect`), que a su vez llama a la API de Gemini.
 
 Se puede alternar sin tocar código añadiendo `?ai=mock` o `?ai=real` a la URL, o editando `AI_MODE` en `frontend/js/config.js`.
 
 ## 13. Configuración de la API (seguridad de la key)
 
-**La API key nunca se coloca en el frontend.** Cuando se usa el modo `real`, la clave vive únicamente en el servidor (`backend/.env`, variable `ANTHROPIC_API_KEY`) y el frontend solo llama a `/api/reflect` (endpoint propio).
+**La API key nunca se coloca en el frontend.** Cuando se usa el modo `real`, la clave vive únicamente en el servidor (`backend/.env`, variable `GEMINI_API_KEY`) y el frontend solo llama a `/api/reflect` (endpoint propio).
 
 ```
 FRONTEND → ENDPOINT PROPIO (/api/reflect) → API DE IA → RESPUESTA → FRONTEND
@@ -130,7 +131,7 @@ python3 -m http.server 8080
 cd backend
 npm install
 cp .env.example .env
-# completar ANTHROPIC_API_KEY en .env y poner AI_MODE=real
+# completar GEMINI_API_KEY en .env y poner AI_MODE=real
 npm start
 # abrir http://localhost:3000  (el backend también sirve el frontend)
 ```
@@ -190,7 +191,7 @@ Separación de responsabilidades: **presentación** (`components/`), **lógica/d
 - El estado se mantiene en memoria de sesión (JavaScript); al recargar la página se pierde el progreso.
 - La detección de "señales de seguridad" es una capa simple basada en palabras clave, **no un diagnóstico ni una evaluación clínica de riesgo**; su único propósito es decidir si se agrega una instrucción de orientación de apoyo a la reflexión.
 - El diseño visual es funcional, no definitivo — la especificación indica explícitamente dejar la identidad visual para una segunda etapa.
-- El modo `real` depende de tener una API key válida de Anthropic configurada en el backend; sin ella, el sistema usa automáticamente el modo mock para no interrumpir la demostración.
+- El modo `real` depende de tener una API key válida de Gemini configurada en el backend; sin ella, el sistema usa automáticamente el modo mock para no interrumpir la demostración.
 
 ## 19. Consideraciones de seguridad psicológica
 

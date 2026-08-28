@@ -14,8 +14,18 @@ const TIPOS = [
 export function renderScreen1(container, { onComplete }) {
   container.innerHTML = `
     <section class="screen screen-1">
+      <div class="reflection-banner">
+        <img src="../../assets/img/banner.png" alt="Paisaje del Illimani" />
+        <div class="reflection-banner-shade"></div>
+        <div class="reflection-banner-copy">
+          <span>Un espacio para escucharte</span>
+          <strong>Amar con Respeto</strong>
+        </div>
+      </div>
+      <img class="floating-sticker sticker-top" src="../../assets/img/nyota.png" alt="" aria-hidden="true" />
+      <img class="floating-sticker sticker-bottom" src="../../assets/img/hirono.png" alt="" aria-hidden="true" />
       <header class="app-header">
-        <h1>Amar con Respeto</h1>
+        <h1>Comienza tu reflexión</h1>
         <p class="subtitle">Una pausa para entender lo que quieres, lo que otros esperan de ti y lo que necesitas antes de decidir.</p>
       </header>
 

@@ -3,8 +3,8 @@
 //  1. Servir el frontend estático (../frontend).
 //  2. Exponer POST /api/reflect, que recibe el contexto ya procesado
 //     (situación, decisión, variables, patrones, respuestas) y llama a la
-//     API de Anthropic usando una API key que vive SOLO en el servidor
-//     (variable de entorno ANTHROPIC_API_KEY). La key nunca llega al cliente.
+//     API de Gemini usando una API key que vive SOLO en el servidor
+//     (variable de entorno GEMINI_API_KEY). La key nunca llega al cliente.
 //
 // Si AI_MODE=mock (o no hay API key configurada), el propio backend genera
 // una reflexión de respaldo localmente, para que el sistema nunca se rompa
@@ -13,7 +13,7 @@
 // Ejecución:
 //   cd backend
 //   npm install
-//   cp .env.example .env   # y completa tu ANTHROPIC_API_KEY si usarás modo real
+//   cp .env.example .env   # y completa tu GEMINI_API_KEY si usarás modo real
 //   npm start
 //
 // Requiere Node 18+ (usa fetch nativo).
@@ -27,8 +27,8 @@ app.use(express.json({ limit: "1mb" }));
 
 const PORT = process.env.PORT || 3000;
 const AI_MODE = process.env.AI_MODE || "mock";
-const API_KEY = process.env.ANTHROPIC_API_KEY || "";
-const MODEL = "claude-sonnet-4-6";
+const API_KEY = process.env.GEMINI_API_KEY || "";
+const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
 // Sirve el frontend estático
 app.use(express.static(path.join(__dirname, "..", "frontend")));
@@ -97,6 +97,31 @@ function mockLocal(contexto) {
   };
 }
 
+function normalizarRespuesta(respuesta, contexto) {
+  const respaldo = mockLocal(contexto);
+  const frase = respuesta.frase_consuelo;
+
+  return {
+    resumen: typeof respuesta.resumen === "string" ? respuesta.resumen : respaldo.resumen,
+    aspectos_destacados: Array.isArray(respuesta.aspectos_destacados)
+      ? respuesta.aspectos_destacados.filter((item) => typeof item === "string").slice(0, 6)
+      : respaldo.aspectos_destacados,
+    reflexion: typeof respuesta.reflexion === "string" ? respuesta.reflexion : respaldo.reflexion,
+    preguntas_orientadoras: Array.isArray(respuesta.preguntas_orientadoras)
+      ? respuesta.preguntas_orientadoras.filter((item) => typeof item === "string").slice(0, 4)
+      : respaldo.preguntas_orientadoras,
+    orientacion_seguridad: contexto.safety?.activa
+      ? typeof respuesta.orientacion_seguridad === "string" && respuesta.orientacion_seguridad.trim()
+        ? respuesta.orientacion_seguridad
+        : respaldo.orientacion_seguridad
+      : null,
+    frase_consuelo:
+      frase && typeof frase.frase === "string" && typeof frase.autor === "string"
+        ? frase
+        : respaldo.frase_consuelo,
+  };
+}
+
 app.post("/api/reflect", async (req, res) => {
   const contexto = req.body;
 
@@ -106,29 +131,55 @@ app.post("/api/reflect", async (req, res) => {
   }
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(API_KEY)}`,
+      {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": API_KEY,
-        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1200,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: JSON.stringify(contexto) }],
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: [{ role: "user", parts: [{ text: JSON.stringify(contexto) }] }],
+        generationConfig: {
+          temperature: 0.55,
+          maxOutputTokens: 1200,
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: "OBJECT",
+            properties: {
+              resumen: { type: "STRING" },
+              aspectos_destacados: { type: "ARRAY", items: { type: "STRING" } },
+              reflexion: { type: "STRING" },
+              preguntas_orientadoras: { type: "ARRAY", items: { type: "STRING" } },
+              orientacion_seguridad: { type: "STRING", nullable: true },
+              frase_consuelo: {
+                type: "OBJECT",
+                properties: { frase: { type: "STRING" }, autor: { type: "STRING" } },
+                required: ["frase", "autor"],
+              },
+            },
+            required: [
+              "resumen",
+              "aspectos_destacados",
+              "reflexion",
+              "preguntas_orientadoras",
+              "orientacion_seguridad",
+              "frase_consuelo",
+            ],
+          },
+        },
       }),
-    });
+      }
+    );
 
     if (!response.ok) {
-      console.error("Error de la API de Anthropic:", response.status, await response.text());
+      console.error("Error de la API de Gemini:", response.status, await response.text());
       return res.json(mockLocal(contexto));
     }
 
     const data = await response.json();
-    const textBlock = (data.content || []).find((b) => b.type === "text");
-    const raw = textBlock ? textBlock.text : "";
+    const raw = data.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
     const clean = raw.replace(/```json|```/g, "").trim();
 
     let parsed;
@@ -139,9 +190,9 @@ app.post("/api/reflect", async (req, res) => {
       return res.json(mockLocal(contexto));
     }
 
-    return res.json(parsed);
+    return res.json(normalizarRespuesta(parsed, contexto));
   } catch (err) {
-    console.error("Error llamando a la API de Anthropic:", err.message);
+    console.error("Error llamando a la API de Gemini:", err.message);
     return res.json(mockLocal(contexto));
   }
 });
