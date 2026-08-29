@@ -132,23 +132,53 @@
     pageLabel.textContent = item.dataset.pages || 'Documento';
     const source = item.dataset.media || item.dataset.pdf;
     const productSource = item.dataset.product;
+    const textContent = item.dataset.text || '';
+    const textPlaceholder = item.dataset.placeholder || 'Escribe aquí tus conclusiones...';
     const mediaType = item.dataset.mediaType || (item.dataset.pdf ? 'application/pdf' : '');
     const isVideo = mediaType.startsWith('video/') || /\.(mp4|webm|mov)(?:$|[?#])/i.test(source || '');
+    const isTextOnly = item.hasAttribute('data-text');
     const activeSource = productSource || source;
     regularViewer.hidden = false;
     gallery.hidden = true;
     if (openGallery(item)) {
       fileType.textContent = itemTitle.textContent.trim().toUpperCase();
-    } else {
-      regularViewer.innerHTML = '';
-    }
-    if (gallery.hidden === false) {
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       closeButton.focus();
       return;
     }
+
+    if (isTextOnly) {
+      modal.querySelector('.document-dialog').classList.remove('is-product', 'is-video');
+      openTab.href = '#';
+      openTab.hidden = true;
+      fileType.textContent = 'TEXTO';
+      const safeText = textContent
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+      const safePlaceholder = textPlaceholder
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+      regularViewer.innerHTML = `
+        <div class="document-text-editor-wrap">
+          <textarea class="document-text-editor" aria-label="Escribir conclusiones" placeholder="${safePlaceholder}">${safeText}</textarea>
+        </div>`;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+      const editor = regularViewer.querySelector('.document-text-editor');
+      if (editor) editor.focus();
+      return;
+    }
+
     openTab.href = activeSource || '#';
     openTab.hidden = !activeSource;
     fileType.textContent = productSource
