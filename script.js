@@ -101,9 +101,17 @@
   }
 
   function openGallery(item) {
+    const galleryImage = item.getAttribute('data-gallery-image');
+    const galleryPdf = item.getAttribute('data-gallery-pdf');
+    const galleryPdf2 = item.getAttribute('data-gallery-pdf-2');
+    const galleryImageLabel = item.getAttribute('data-gallery-image-label') || 'Imagen';
+    const galleryPdfLabel = item.getAttribute('data-gallery-pdf-label') || 'PDF';
+    const galleryPdf2Label = item.getAttribute('data-gallery-pdf-2-label') || 'Pre-Storyboard';
+
     galleryItems = [
-      { source: item.dataset.galleryImage, type: 'image', label: 'Imagen' },
-      { source: item.dataset.galleryPdf, type: 'pdf', label: 'PDF' },
+      ...(galleryImage ? [{ source: galleryImage, type: 'image', label: galleryImageLabel }] : []),
+      ...(galleryPdf ? [{ source: galleryPdf, type: 'pdf', label: galleryPdfLabel }] : []),
+      ...(galleryPdf2 ? [{ source: galleryPdf2, type: 'pdf', label: galleryPdf2Label }] : []),
     ].filter((resource) => resource.source);
     if (galleryItems.length < 2) return false;
     galleryIndex = 0;
@@ -130,7 +138,7 @@
     regularViewer.hidden = false;
     gallery.hidden = true;
     if (openGallery(item)) {
-      fileType.textContent = 'MOCKUP';
+      fileType.textContent = itemTitle.textContent.trim().toUpperCase();
     } else {
       regularViewer.innerHTML = '';
     }
